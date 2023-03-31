@@ -22,10 +22,9 @@ class Student:
     def _avg_grades(self): # внутренняя функция для подсчета средней оценки за все домашние задания
         total = 0
         counter = 0
-        for i in self.grades.values():
-            for y in i:
-                total += y
-                counter += 1
+        for grades in self.grades.values():
+            total += sum(grades)
+            counter += len(grades)
         res = round(total / counter, 1)
         return res
 
@@ -57,10 +56,9 @@ class Lecturer(Mentor):
     def _avg_grades(self): # внутренняя функция для подсчета средней оценки за все лекции
         total = 0
         counter = 0
-        for i in self.grades.values():
-            for y in i:
-                total += y
-                counter += 1
+        for grades in self.grades.values():
+            total += sum(grades)
+            counter += len(grades)
         res = round(total / counter, 1)
         return res
 
@@ -87,10 +85,10 @@ class Reviewer(Mentor):
          res = f'Имя: {self.name}\nФамилия: {self.surname}'
          return res
 
-def avg_rate_course(list, course):  # функция для подсчета средней оценки за домашние задания или за лекции
+def avg_rate_course(list_of, course): # функция для подсчета средней оценки за домашние задания или за лекции
     total = 0
     counter = 0
-    for i in list:
+    for i in list_of:
         for y, j in i.grades.items():
             for a in j:
                 if y == course:
