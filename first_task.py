@@ -31,7 +31,10 @@ class Student:
     def __lt__(self, other): # метод для сравнения студентов по средней оценке
         if not isinstance(other, Student):
             print('Такого студента нет')
-        return self._avg_grades() < other._avg_grades()
+        if self._avg_grades() > other._avg_grades():
+            return f'Средняя оценка {self.name} {self.surname} больше чем средняя оценка {other.name} {other.surname}'
+        else:
+            return f'Средняя оценка {self.name} {self.surname} меньше чем средняя оценка {other.name} {other.surname}'
 
     def __str__(self): # метод для выведения информации о классе
         a = ', '.join(self.courses_in_progress)
@@ -65,7 +68,11 @@ class Lecturer(Mentor):
     def __lt__(self, other): # метод для сравнения лекторов по средней оценке
         if not isinstance(other, Lecturer):
             print('Такого лектора нет')
-        return self._avg_grades() < other._avg_grades()
+        if self._avg_grades() > other._avg_grades():
+             return f'Средняя оценка {self.name} {self.surname} больше чем средняя оценка {other.name} {other.surname}'
+        else:
+            return f'Средняя оценка {self.name} {self.surname} меньше чем средняя оценка {other.name} {other.surname}'
+
 
     def __str__(self): # метод для выведения информации о классе
          res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self._avg_grades()}'
@@ -82,7 +89,7 @@ class Reviewer(Mentor):
             return 'Ошибка'
 
     def __str__(self):
-         res = f'Имя: {self.name}\nФамилия: {self.surname}'
+         res = f'Имя ревьюера: {self.name}\nФамилия ревьюера: {self.surname}'
          return res
 
 def avg_rate_course(list_of, course): # функция для подсчета средней оценки за домашние задания или за лекции
@@ -165,8 +172,8 @@ print(bad_reviewer, end='\n\n')
 print(first_lector.__lt__(second_lector))
 print(worst_student.__lt__(best_student))
 
-print(avg_rate_course(Student.students_list, 'Python'))
-print(avg_rate_course(Lecturer.lectors_list, 'Python'))
+print(f"Средняя оценка всех студентов за курс Python: {avg_rate_course(Student.students_list, 'Python')}")
+print(f"Средняя оценка всех лекторов за курс лекций по Python: {avg_rate_course(Lecturer.lectors_list, 'Python')}")
 
 
 
