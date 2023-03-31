@@ -98,6 +98,7 @@ def avg_rate_course(list, course):  # функция для подсчета с�
                     total += a
     return total / counter
 
+
 best_student = Student('Good', 'Boy', 'your_gender') # студент №1
 best_student.finished_courses += ['Ведение в программирование']
 best_student.courses_in_progress += ['Python']
